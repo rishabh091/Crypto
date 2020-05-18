@@ -1,5 +1,10 @@
-var money = 1000000
+var money = 1000000;
+
+function setMoney(m) {
+    money = m;
+}
 
 module.exports = {
-    money: money
+    money: money,
+    setMoney: setMoney
 }

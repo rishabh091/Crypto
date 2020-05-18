@@ -1,12 +1,11 @@
 const avg = require('./avg.js');
-const moneyFile = require('../money.js');
 const MongoClient = require('mongodb').MongoClient;
+var moneyFile = require('../money.js');
 
 const url = "mongodb://localhost:27017/";
 
 async function buy(coins) {
     let money = moneyFile.money;
-    console.log("Money Present : " + money);
 
     for (let i = 0; i < coins.length; i++) {
         if (money != 0) {
@@ -42,13 +41,12 @@ async function buy(coins) {
 
                         //save money back 
                         money -= amount;
-                        moneyFile.money = money;
-
-                        console.log("Money left : " + moneyFile.money);
+                        moneyFile.setMoney(money);
                         db.close();
                     });
                 });
 
+                console.log("Money left : " + moneyFile.money);
                 console.log("------------------------------------------------------------------");
             } else {
                 console.log(coins[i].name + " is out of budget.");
