@@ -6,6 +6,11 @@ const url = "mongodb://localhost:27017/";
 
 async function sell() {
     const receipts = await getReceipts().catch((err) => { return; });
+
+    if(receipts.length == 0) {
+        console.log('No coins to sell');
+        return;
+    }
     
     for(let i = 0; i < receipts.length; i++) {
         let reciept_coin = receipts[i];
