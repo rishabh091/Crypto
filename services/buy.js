@@ -41,6 +41,10 @@ async function buy(coins) {
                         }
 
                         //save money back
+                        if(money === NaN || money === undefined) {
+                            console.log("Money is NaN");
+                            return;
+                        }
                         moneyFile.save(money);
                         db.close();
                     });

@@ -46,6 +46,9 @@ async function sell() {
                     }
 
                     //save money in db
+                    if(money === NaN || money === undefined) {
+                        return;
+                    }
                     moneyFile.save(money);
                     
                     console.log(reciept_coin.id + " sold at " + current_coin.market_data.current_price.inr);
