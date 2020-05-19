@@ -18,6 +18,7 @@ async function algorithm() {
 }
 
 function main() {
+    algorithm();
     let interval = setInterval(() => {
         algorithm();
     }, 30 * 60 * 1000);
