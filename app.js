@@ -4,7 +4,10 @@ const buy = require('./services/buy.js');
 const sell = require('./services/sell.js');
 
 async function algorithm() {
-    let data = await coins.coins();
+    let data = await coins.coins().catch((err) => {
+        console.log("Error connecting to internet");
+        return;
+    });
     let arr = getTopCoins.topCoins(data);
 
     //async buy and sell functions
@@ -17,6 +20,6 @@ async function algorithm() {
 function main() {
     let interval = setInterval(() => {
         algorithm();
-    }, 60 * 1000);
+    }, 30 * 60 * 1000);
 }
 main();
