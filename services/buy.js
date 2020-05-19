@@ -12,6 +12,7 @@ async function buy(coins) {
             if (coins[i].current_price < avg.avg(coins[i].high_24h, coins[i].low_24h)) {
 
                 const amount = money / 10;
+                money = money - amount;
 
                 const reciept = {
                     id: coins[i].id,
