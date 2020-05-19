@@ -5,9 +5,9 @@ var moneyFile = require('../money.js');
 const url = "mongodb://localhost:27017/";
 
 async function buy(coins) {
-    let money = moneyFile.money;
-
     for (let i = 0; i < coins.length; i++) {
+        let money = await moneyFile.get().catch((err) => { return; });
+
         if (money != 0) {
             if (coins[i].current_price < avg.avg(coins[i].high_24h, coins[i].low_24h)) {
 
@@ -39,14 +39,12 @@ async function buy(coins) {
                             return;
                         }
 
-                        //save money back 
-                        money -= amount;
-                        moneyFile.setMoney(money);
+                        //save money back
+                        moneyFile.save(money);
                         db.close();
                     });
                 });
 
-                console.log("Money left : " + moneyFile.money);
                 console.log("------------------------------------------------------------------");
             } else {
                 console.log(coins[i].name + " is out of budget.");
