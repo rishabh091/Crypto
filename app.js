@@ -12,7 +12,7 @@ async function algorithm() {
 
     //async buy and sell functions
     //async buy
-    buy.buy(arr).catch((err) => { console.log('Error in buying coins') });
+    await buy.buy(arr).catch((err) => { console.log('Error in buying coins') });
     //async sell
     sell.sell().catch((err) => { console.log("Error in selling coins") });
 }
