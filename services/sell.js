@@ -20,11 +20,9 @@ async function sell() {
         });
 
         let money = await moneyFile.get().catch((err) => { return; });
-        console.log(reciept_coin.id + " quantity : " + reciept_coin.quantity);
         const profit = reciept_coin.quantity * current_coin.market_data.current_price.inr;
         
         //add profit
-        console.log('Profit : ' + profit);
         money += profit;
 
         if(current_coin.market_data.current_price.inr > reciept_coin.price_bought_at) {
@@ -50,8 +48,10 @@ async function sell() {
                         return;
                     }
                     moneyFile.save(money);
-                    
+
+                    console.log(reciept_coin.id + " quantity : " + reciept_coin.quantity);
                     console.log(reciept_coin.id + " sold at " + current_coin.market_data.current_price.inr);
+                    console.log('Profit : ' + profit);
                     db.close();
                 });
             });            
